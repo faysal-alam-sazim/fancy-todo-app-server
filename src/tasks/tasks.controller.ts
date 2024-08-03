@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import {
   Body,
   Controller,
@@ -15,8 +16,18 @@ import { CreateTaskDto, UpdateTaskDto } from './tasks.dto';
 =======
 import { Body, Controller, Get, Post } from '@nestjs/common';
 
+=======
+import {
+  Body,
+  Controller,
+  Get,
+  InternalServerErrorException,
+  Post,
+} from '@nestjs/common';
+>>>>>>> 50fe548 (feat(FTDAS): Create POST /todos api to create task)
 import { TasksService } from './tasks.service';
 import { Task } from 'src/common/entities/task.entity';
+
 import { CreateTaskDto } from './tasks.dto';
 >>>>>>> dc64799 (feat(FTDAS): Create POST /todos api to create task)
 
