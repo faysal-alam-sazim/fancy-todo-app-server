@@ -14,4 +14,10 @@ export class TasksRepository extends EntityRepository<Task> {
     await this.em.persistAndFlush(task);
     return task;
   }
+
+  async createOne(createTaskDto: CreateTaskDto): Promise<Task> {
+    const task = this.create(createTaskDto);
+    await this.em.persistAndFlush(task);
+    return task;
+  }
 }
