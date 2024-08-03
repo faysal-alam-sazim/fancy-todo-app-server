@@ -1,4 +1,5 @@
 import { EntityManager, EntityRepository } from '@mikro-orm/postgresql';
+<<<<<<< HEAD
 import { Injectable } from '@nestjs/common';
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -64,4 +65,15 @@ export class TasksRepository extends EntityRepository<Task> {
     await this.em.removeAndFlush(task);
   }
 >>>>>>> 3c04e04 (feat(FTDAS): Add Get /todos/:id API to fetch one task)
+=======
+import { Task } from 'src/common/entities/task.entity';
+
+export class TaskRepository extends EntityRepository<Task> {
+  constructor(em: EntityManager) {
+    super(em, Task);
+  }
+  async getAllTasks(): Promise<Task[]> {
+    return await this.findAll();
+  }
+>>>>>>> 1352e66 (feat(FTDAS): Get api for all todos)
 }
