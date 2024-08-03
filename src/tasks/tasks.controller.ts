@@ -1,7 +1,13 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
-
+import {
+  Body,
+  Controller,
+  Get,
+  InternalServerErrorException,
+  Post,
+} from '@nestjs/common';
 import { TasksService } from './tasks.service';
 import { Task } from 'src/common/entities/task.entity';
+
 import { CreateTaskDto } from './tasks.dto';
 
 @Controller('todos')
