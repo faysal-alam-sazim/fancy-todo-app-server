@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import {
   Body,
   Controller,
@@ -18,6 +19,13 @@ import { Controller, Get } from '@nestjs/common';
 import { TasksService } from './tasks.service';
 import { Task } from 'src/common/entities/task.entity';
 >>>>>>> 66b362b (feat(FTDAS): Get api for all todos)
+=======
+import { Body, Controller, Get, Post } from '@nestjs/common';
+
+import { TasksService } from './tasks.service';
+import { Task } from 'src/common/entities/task.entity';
+import { CreateTaskDto } from './tasks.dto';
+>>>>>>> dc64799 (feat(FTDAS): Create POST /todos api to create task)
 
 @Controller('todos')
 export class TasksController {
@@ -27,6 +35,7 @@ export class TasksController {
   async findAll(): Promise<Task[]> {
     return this.tasksService.findAll();
   }
+<<<<<<< HEAD
 <<<<<<< HEAD
 
   @Post()
@@ -73,4 +82,11 @@ export class TasksController {
   }
 =======
 >>>>>>> 66b362b (feat(FTDAS): Get api for all todos)
+=======
+
+  @Post()
+  async createTask(@Body() createTaskDto: CreateTaskDto): Promise<Task> {
+    return await this.tasksService.createTask(createTaskDto);
+  }
+>>>>>>> dc64799 (feat(FTDAS): Create POST /todos api to create task)
 }
