@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import {
   Body,
   Controller,
@@ -11,6 +12,12 @@ import {
 import { TasksService } from './tasks.service';
 import { Task } from 'src/common/entities/task.entity';
 import { CreateTaskDto, UpdateTaskDto } from './tasks.dto';
+=======
+import { Controller, Get } from '@nestjs/common';
+
+import { TasksService } from './tasks.service';
+import { Task } from 'src/common/entities/task.entity';
+>>>>>>> 66b362b (feat(FTDAS): Get api for all todos)
 
 @Controller('todos')
 export class TasksController {
@@ -20,6 +27,7 @@ export class TasksController {
   async findAll(): Promise<Task[]> {
     return this.tasksService.findAll();
   }
+<<<<<<< HEAD
 
   @Post()
   async createOne(@Body() createTaskDto: CreateTaskDto): Promise<Task> {
@@ -63,4 +71,6 @@ export class TasksController {
   async removeCompleted(): Promise<void> {
     await this.tasksService.removeCompleted();
   }
+=======
+>>>>>>> 66b362b (feat(FTDAS): Get api for all todos)
 }

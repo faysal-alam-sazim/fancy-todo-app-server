@@ -10,6 +10,7 @@ import { Injectable } from '@nestjs/common';
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 import { Task } from 'src/common/entities/task.entity';
 import { CreateTaskDto, UpdateTaskDto } from './tasks.dto';
@@ -89,10 +90,17 @@ import { CreateTaskDto, UpdateTaskDto } from './tasks.dto';
 import { EntityManager, EntityRepository } from '@mikro-orm/postgresql';
 import { TaskRepository } from './tasks.repository';
 >>>>>>> 57d0b96 (feat(FTDAS): Create PUT /todos/:id to update task)
+=======
+import { InjectRepository } from '@mikro-orm/nestjs';
+import { EntityRepository } from '@mikro-orm/postgresql';
+
+import { Task } from 'src/common/entities/task.entity';
+>>>>>>> 66b362b (feat(FTDAS): Get api for all todos)
 
 @Injectable()
 export class TasksService {
   constructor(
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -253,5 +261,12 @@ export class TasksService {
       status: 'completed',
     });
     await this.tasksRepository.removeCompleted(completedTasks);
+=======
+    @InjectRepository(Task)
+    private readonly taskRepository: EntityRepository<Task>,
+  ) {}
+  async findAll(): Promise<Task[]> {
+    return this.taskRepository.findAll();
+>>>>>>> 66b362b (feat(FTDAS): Get api for all todos)
   }
 }
