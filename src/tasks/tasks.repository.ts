@@ -3,6 +3,7 @@ import { EntityManager, EntityRepository } from '@mikro-orm/postgresql';
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { Injectable } from '@nestjs/common';
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -138,6 +139,8 @@ export class TasksRepository extends EntityRepository<Task> {
 =======
 =======
 >>>>>>> 1352e66 (feat(FTDAS): Get api for all todos)
+=======
+>>>>>>> 1352e66 (feat(FTDAS): Get api for all todos)
 import { Task } from 'src/common/entities/task.entity';
 
 export class TaskRepository extends EntityRepository<Task> {
@@ -147,6 +150,7 @@ export class TaskRepository extends EntityRepository<Task> {
   async getAllTasks(): Promise<Task[]> {
     return await this.findAll();
   }
+<<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> 1352e66 (feat(FTDAS): Get api for all todos)
 =======
@@ -166,4 +170,6 @@ export class TaskRepository extends EntityRepository<Task> {
 >>>>>>> 57d0b96 (feat(FTDAS): Create PUT /todos/:id to update task)
 =======
 >>>>>>> 3e90812 (feat(FTDAS): Add Delete /todos/completed to delete completed tasks)
+=======
+>>>>>>> 1352e66 (feat(FTDAS): Get api for all todos)
 }
