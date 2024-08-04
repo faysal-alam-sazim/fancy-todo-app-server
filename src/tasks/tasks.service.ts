@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Task } from 'src/common/entities/task.entity';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { CreateTaskDto, UpdateTaskDto } from './tasks.dto';
 import { TasksRepository } from './tasks.repository';
 
@@ -22,6 +23,9 @@ export class TasksService {
     return await this.tasksRepository.updateOne(task, updateTaskDto);
 =======
 import { CreateTaskDto } from './tasks.dto';
+=======
+import { CreateTaskDto, UpdateTaskDto } from './tasks.dto';
+>>>>>>> e018994 (feat(FTDAS): Create PUT /todos/:id to update task)
 import { TaskRepository } from './tasks.repository';
 
 @Injectable()
@@ -35,5 +39,10 @@ export class TasksService {
   async createTask(createTaskDto: CreateTaskDto): Promise<Task> {
     return await this.taskRepository.createOne(createTaskDto);
 >>>>>>> 4d567fc (feat(FTDAS): Create POST /todos api to create task)
+  }
+
+  async updateTask(id: number, updateTaskDto: UpdateTaskDto): Promise<Task> {
+    const task = await this.taskRepository.findOneOrFail(id);
+    return await this.taskRepository.updateOne(task, updateTaskDto);
   }
 }
