@@ -1,15 +1,14 @@
 import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@mikro-orm/nestjs';
-import { EntityManager, EntityRepository } from '@mikro-orm/postgresql';
-
 import { Task } from 'src/common/entities/task.entity';
-import { CreateTaskDto } from './tasks.dto';
+import { CreateTaskDto, UpdateTaskDto } from './tasks.dto';
+import { EntityManager, EntityRepository } from '@mikro-orm/postgresql';
+import { InjectRepository } from '@mikro-orm/nestjs';
+import { TaskRepository } from './tasks.repository';
 
 @Injectable()
 export class TasksService {
   constructor(
-    @InjectRepository(Task)
-    private readonly taskRepository: EntityRepository<Task>,
+    private readonly taskRepository: TaskRepository,
     private readonly em: EntityManager,
   ) {}
 
@@ -21,5 +20,9 @@ export class TasksService {
     const task = this.taskRepository.create(createTaskDto);
     await this.em.persistAndFlush(task);
     return task;
+  }
+
+  async updateTask(id: number, updateTaskDto: UpdateTaskDto): Promise<Task> {
+    return await this.taskRepository.updateTask(id, updateTaskDto);
   }
 }
