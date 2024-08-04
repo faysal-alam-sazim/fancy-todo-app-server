@@ -43,4 +43,9 @@ export class TasksController {
   async findOneTask(@Param('id') id: string): Promise<Task> {
     return this.tasksService.findOneTask(+id);
   }
+
+  @Delete('completed')
+  async removeCompletedTasks(): Promise<void> {
+    await this.tasksService.removeCompletedTasks();
+  }
 }
