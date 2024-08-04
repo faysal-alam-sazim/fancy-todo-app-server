@@ -2,6 +2,9 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 31ac275 (feat(FTDAS): Add Delete /todos/:id api and delete functionality)
 import {
   Body,
   Controller,
@@ -11,6 +14,7 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
+<<<<<<< HEAD
 
 import { TasksService } from './tasks.service';
 import { Task } from 'src/common/entities/task.entity';
@@ -40,6 +44,8 @@ import { CreateTaskDto } from './tasks.dto';
 >>>>>>> dc64799 (feat(FTDAS): Create POST /todos api to create task)
 =======
 import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+=======
+>>>>>>> 31ac275 (feat(FTDAS): Add Delete /todos/:id api and delete functionality)
 
 import { TasksService } from './tasks.service';
 import { Task } from 'src/common/entities/task.entity';
@@ -118,5 +124,13 @@ export class TasksController {
   ): Promise<Task> {
     return this.tasksService.updateTask(+id, updateTaskDto);
   }
+<<<<<<< HEAD
 >>>>>>> 57d0b96 (feat(FTDAS): Create PUT /todos/:id to update task)
+=======
+
+  @Delete(':id')
+  async deleteTask(@Param('id') id: string) {
+    return await this.tasksService.deleteTask(+id);
+  }
+>>>>>>> 31ac275 (feat(FTDAS): Add Delete /todos/:id api and delete functionality)
 }
