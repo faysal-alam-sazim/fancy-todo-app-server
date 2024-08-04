@@ -1,7 +1,8 @@
 import { Injectable } from '@nestjs/common';
+import { EntityManager } from '@mikro-orm/postgresql';
+
 import { Task } from 'src/common/entities/task.entity';
 import { CreateTaskDto, UpdateTaskDto } from './tasks.dto';
-import { EntityManager, EntityRepository } from '@mikro-orm/postgresql';
 import { TaskRepository } from './tasks.repository';
 
 @Injectable()
@@ -32,10 +33,7 @@ export class TasksService {
     }
   }
 
-  async deleteTask(id: number) {
-    const task = await this.taskRepository.findOne(id);
-    if (task) {
-      await this.em.removeAndFlush(task);
-    }
+  async findOneTask(id: number): Promise<Task> {
+    return await this.taskRepository.findOneOrFail(id);
   }
 }
