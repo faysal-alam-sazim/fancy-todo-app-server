@@ -11,6 +11,7 @@ import { Injectable } from '@nestjs/common';
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 import { Task } from 'src/common/entities/task.entity';
 import { CreateTaskDto, UpdateTaskDto } from './tasks.dto';
@@ -100,10 +101,18 @@ import { Task } from 'src/common/entities/task.entity';
 =======
 import { CreateTaskDto } from './tasks.dto';
 >>>>>>> dc64799 (feat(FTDAS): Create POST /todos api to create task)
+=======
+import { Task } from 'src/common/entities/task.entity';
+import { CreateTaskDto, UpdateTaskDto } from './tasks.dto';
+import { EntityManager, EntityRepository } from '@mikro-orm/postgresql';
+import { InjectRepository } from '@mikro-orm/nestjs';
+import { TaskRepository } from './tasks.repository';
+>>>>>>> 57d0b96 (feat(FTDAS): Create PUT /todos/:id to update task)
 
 @Injectable()
 export class TasksService {
   constructor(
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -268,6 +277,9 @@ export class TasksService {
 =======
     @InjectRepository(Task)
     private readonly taskRepository: EntityRepository<Task>,
+=======
+    private readonly taskRepository: TaskRepository,
+>>>>>>> 57d0b96 (feat(FTDAS): Create PUT /todos/:id to update task)
     private readonly em: EntityManager,
   ) {}
 
@@ -284,5 +296,9 @@ export class TasksService {
     await this.em.persistAndFlush(task);
     return task;
 >>>>>>> dc64799 (feat(FTDAS): Create POST /todos api to create task)
+  }
+
+  async updateTask(id: number, updateTaskDto: UpdateTaskDto): Promise<Task> {
+    return await this.taskRepository.updateTask(id, updateTaskDto);
   }
 }
