@@ -1,15 +1,24 @@
 import { EntityManager, EntityRepository } from '@mikro-orm/postgresql';
 import { Injectable } from '@nestjs/common';
+<<<<<<< HEAD
 
 import { Task } from 'src/common/entities/task.entity';
 import { CreateTaskDto, UpdateTaskDto } from './tasks.dto';
 
 @Injectable()
 export class TasksRepository extends EntityRepository<Task> {
+=======
+import { Task } from 'src/common/entities/task.entity';
+import { UpdateTaskDto } from './tasks.dto';
+
+@Injectable()
+export class TaskRepository extends EntityRepository<Task> {
+>>>>>>> 57d0b96 (feat(FTDAS): Create PUT /todos/:id to update task)
   constructor(em: EntityManager) {
     super(em, Task);
   }
 
+<<<<<<< HEAD
   async createOne(createTaskDto: CreateTaskDto): Promise<Task> {
     const task = this.create(createTaskDto);
     await this.em.persistAndFlush(task);
@@ -25,4 +34,14 @@ export class TasksRepository extends EntityRepository<Task> {
   async deleteOne(task: Task) {
     await this.em.removeAndFlush(task);
   }
+=======
+  async updateTask(id: number, updateTaskDto: UpdateTaskDto): Promise<Task> {
+    const task = await this.findOne(id);
+    if (task) {
+      this.assign(task, updateTaskDto);
+      await this.em.persistAndFlush(task);
+    }
+    return task;
+  }
+>>>>>>> 57d0b96 (feat(FTDAS): Create PUT /todos/:id to update task)
 }
