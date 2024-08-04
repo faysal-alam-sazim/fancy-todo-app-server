@@ -132,5 +132,13 @@ export class TasksController {
   async deleteTask(@Param('id') id: string) {
     return await this.tasksService.deleteTask(+id);
   }
+<<<<<<< HEAD
 >>>>>>> 31ac275 (feat(FTDAS): Add Delete /todos/:id api and delete functionality)
+=======
+
+  @Get(':id')
+  async findOneTask(@Param('id') id: string): Promise<Task> {
+    return this.tasksService.findOneTask(+id);
+  }
+>>>>>>> c30c7e8 (feat(FTDAS): Add Get /todos/:id API to fetch one task)
 }
