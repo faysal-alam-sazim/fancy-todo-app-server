@@ -4,12 +4,9 @@ import { Task } from 'src/common/entities/task.entity';
 import { CreateTaskDto, UpdateTaskDto } from './tasks.dto';
 
 @Injectable()
-export class TaskRepository extends EntityRepository<Task> {
+export class TasksRepository extends EntityRepository<Task> {
   constructor(em: EntityManager) {
     super(em, Task);
-  }
-  async getAllTasks(): Promise<Task[]> {
-    return this.findAll();
   }
 
   async createOne(createTaskDto: CreateTaskDto): Promise<Task> {
@@ -22,5 +19,9 @@ export class TaskRepository extends EntityRepository<Task> {
     this.assign(task, updateTaskDto);
     await this.em.persistAndFlush(task);
     return task;
+  }
+
+  async deleteOne(task: Task) {
+    await this.em.removeAndFlush(task);
   }
 }

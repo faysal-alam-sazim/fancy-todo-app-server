@@ -1,9 +1,9 @@
 import { Entity, PrimaryKey, Property } from '@mikro-orm/core';
-import { TaskRepository } from 'src/tasks/tasks.repository';
+import { TasksRepository } from 'src/tasks/tasks.repository';
 
 @Entity({
   tableName: 'task',
-  repository: () => TaskRepository,
+  repository: () => TasksRepository,
 })
 export class Task {
   @PrimaryKey()
