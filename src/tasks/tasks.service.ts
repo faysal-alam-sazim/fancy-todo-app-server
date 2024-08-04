@@ -1,41 +1,32 @@
 import { Injectable } from '@nestjs/common';
+
 import { Task } from 'src/common/entities/task.entity';
 import { CreateTaskDto, UpdateTaskDto } from './tasks.dto';
-import { EntityManager, EntityRepository } from '@mikro-orm/postgresql';
-import { TaskRepository } from './tasks.repository';
+import { TasksRepository } from './tasks.repository';
 
 @Injectable()
 export class TasksService {
-  constructor(
-    private readonly taskRepository: TaskRepository,
-    private readonly em: EntityManager,
-  ) {}
+  constructor(private readonly tasksRepository: TasksRepository) {}
 
   async findAll(): Promise<Task[]> {
-    return await this.taskRepository.findAll();
+    return await this.tasksRepository.findAll();
   }
 
-  async createTask(createTaskDto: CreateTaskDto): Promise<Task> {
-    const task = this.taskRepository.create(createTaskDto);
-    await this.em.persistAndFlush(task);
-    return task;
+  async createOne(createTaskDto: CreateTaskDto): Promise<Task> {
+    return await this.tasksRepository.createOne(createTaskDto);
   }
 
-  async updateTask(id: number, updateTaskDto: UpdateTaskDto): Promise<Task> {
-    return await this.taskRepository.updateTask(id, updateTaskDto);
+  async updateOne(id: number, updateTaskDto: UpdateTaskDto): Promise<Task> {
+    const task = await this.tasksRepository.findOneOrFail(id);
+    return await this.tasksRepository.updateOne(task, updateTaskDto);
   }
 
-  async deleteTask(id: number) {
-    const task = await this.taskRepository.findOne(id);
-    if (task) {
-      await this.em.removeAndFlush(task);
-    }
+  async deleteOne(id: number) {
+    const task = await this.tasksRepository.findOne(id);
+    return await this.tasksRepository.deleteOne(task);
   }
 
-  async deleteTask(id: number) {
-    const task = await this.taskRepository.findOne(id);
-    if (task) {
-      await this.em.removeAndFlush(task);
-    }
+  async findOne(id: number): Promise<Task> {
+    return await this.tasksRepository.findOneOrFail(id);
   }
 }

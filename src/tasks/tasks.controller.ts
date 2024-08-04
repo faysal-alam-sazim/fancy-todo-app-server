@@ -22,20 +22,25 @@ export class TasksController {
   }
 
   @Post()
-  async createTask(@Body() createTaskDto: CreateTaskDto): Promise<Task> {
-    return await this.tasksService.createTask(createTaskDto);
+  async createOne(@Body() createTaskDto: CreateTaskDto): Promise<Task> {
+    return await this.tasksService.createOne(createTaskDto);
   }
 
   @Put(':id')
-  async updateTask(
+  async updateOne(
     @Param('id') id: string,
     @Body() updateTaskDto: UpdateTaskDto,
   ): Promise<Task> {
-    return this.tasksService.updateTask(+id, updateTaskDto);
+    return this.tasksService.updateOne(+id, updateTaskDto);
   }
 
   @Delete(':id')
-  async deleteTask(@Param('id') id: string) {
-    return await this.tasksService.deleteTask(+id);
+  async deleteOne(@Param('id') id: string) {
+    return await this.tasksService.deleteOne(+id);
+  }
+
+  @Get(':id')
+  async findOne(@Param('id') id: string): Promise<Task> {
+    return this.tasksService.findOne(+id);
   }
 }
