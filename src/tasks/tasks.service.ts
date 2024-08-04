@@ -307,4 +307,11 @@ export class TasksService {
       await this.em.removeAndFlush(task);
     }
   }
+
+  async deleteTask(id: number) {
+    const task = await this.taskRepository.findOne(id);
+    if (task) {
+      await this.em.removeAndFlush(task);
+    }
+  }
 }
