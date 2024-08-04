@@ -1,14 +1,8 @@
-import {
-  Body,
-  Controller,
-  Get,
-  InternalServerErrorException,
-  Post,
-} from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+
 import { TasksService } from './tasks.service';
 import { Task } from 'src/common/entities/task.entity';
-
-import { CreateTaskDto } from './tasks.dto';
+import { CreateTaskDto, UpdateTaskDto } from './tasks.dto';
 
 @Controller('todos')
 export class TasksController {
@@ -20,7 +14,15 @@ export class TasksController {
   }
 
   @Post()
-  async createTask(@Body() createTaskDto: CreateTaskDto): Promise<Task> {
-    return await this.tasksService.createTask(createTaskDto);
+  async createOne(@Body() createTaskDto: CreateTaskDto): Promise<Task> {
+    return await this.tasksService.createOne(createTaskDto);
+  }
+
+  @Put(':id')
+  async updateOne(
+    @Param('id') id: string,
+    @Body() updateTaskDto: UpdateTaskDto,
+  ): Promise<Task> {
+    return this.tasksService.updateOne(+id, updateTaskDto);
   }
 }
