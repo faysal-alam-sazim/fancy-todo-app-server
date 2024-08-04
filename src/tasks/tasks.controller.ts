@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import {
   Body,
   Controller,
@@ -30,6 +31,13 @@ import { Task } from 'src/common/entities/task.entity';
 
 import { CreateTaskDto } from './tasks.dto';
 >>>>>>> dc64799 (feat(FTDAS): Create POST /todos api to create task)
+=======
+import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+
+import { TasksService } from './tasks.service';
+import { Task } from 'src/common/entities/task.entity';
+import { CreateTaskDto, UpdateTaskDto } from './tasks.dto';
+>>>>>>> 57d0b96 (feat(FTDAS): Create PUT /todos/:id to update task)
 
 @Controller('todos')
 export class TasksController {
@@ -74,5 +82,13 @@ export class TasksController {
   async createTask(@Body() createTaskDto: CreateTaskDto): Promise<Task> {
     return await this.tasksService.createTask(createTaskDto);
 >>>>>>> dc64799 (feat(FTDAS): Create POST /todos api to create task)
+  }
+
+  @Put(':id')
+  async updateTask(
+    @Param('id') id: string,
+    @Body() updateTaskDto: UpdateTaskDto,
+  ): Promise<Task> {
+    return this.tasksService.updateTask(+id, updateTaskDto);
   }
 }
