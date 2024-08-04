@@ -48,4 +48,9 @@ export class TasksController {
   async findOne(@Param('id') id: string): Promise<Task> {
     return this.tasksService.findOne(+id);
   }
+
+  @Delete(':id')
+  async deleteTask(@Param('id') id: string) {
+    return await this.tasksService.deleteTask(+id);
+  }
 }
