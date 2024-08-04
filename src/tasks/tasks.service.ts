@@ -8,6 +8,7 @@ import { Injectable } from '@nestjs/common';
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 import { Task } from 'src/common/entities/task.entity';
 import { CreateTaskDto, UpdateTaskDto } from './tasks.dto';
@@ -43,9 +44,12 @@ import { Task } from 'src/common/entities/task.entity';
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
+=======
+import { EntityManager } from '@mikro-orm/postgresql';
+
+>>>>>>> c30c7e8 (feat(FTDAS): Add Get /todos/:id API to fetch one task)
 import { Task } from 'src/common/entities/task.entity';
 import { CreateTaskDto, UpdateTaskDto } from './tasks.dto';
-import { EntityManager, EntityRepository } from '@mikro-orm/postgresql';
 import { TaskRepository } from './tasks.repository';
 >>>>>>> 57d0b96 (feat(FTDAS): Create PUT /todos/:id to update task)
 =======
@@ -223,10 +227,7 @@ export class TasksService {
     }
   }
 
-  async deleteTask(id: number) {
-    const task = await this.taskRepository.findOne(id);
-    if (task) {
-      await this.em.removeAndFlush(task);
-    }
+  async findOneTask(id: number): Promise<Task> {
+    return await this.taskRepository.findOneOrFail(id);
   }
 }
