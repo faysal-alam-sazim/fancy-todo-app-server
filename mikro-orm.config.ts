@@ -11,11 +11,7 @@ export default {
   password: '1234',
   debug: true,
   migrations: {
-    tableName: 'mikro_orm_migrations',
-    path: './migrations',
-    pattern: /^[\w-]+\d+\.ts$/,
-    transactional: true,
-    emit: 'ts',
+    path: './db/migrations',
   },
   metadataProvider: TsMorphMetadataProvider,
 } as Parameters<typeof MikroORM.init>[0];
