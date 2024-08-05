@@ -17,4 +17,9 @@ export class TaskRepository extends EntityRepository<Task> {
     }
     return task;
   }
+
+  async deleteCompletedTasks(): Promise<void> {
+    const completedTasks = await this.find({ status: 'completed' });
+    await this.em.removeAndFlush(completedTasks);
+  }
 }
