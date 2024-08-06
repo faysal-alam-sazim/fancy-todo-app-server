@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+
 import { Task } from 'src/common/entities/task.entity';
 import { CreateTaskDto, UpdateTaskDto } from './tasks.dto';
 import { TaskRepository } from './tasks.repository';
@@ -18,5 +19,10 @@ export class TasksService {
   async updateTask(id: number, updateTaskDto: UpdateTaskDto): Promise<Task> {
     const task = await this.taskRepository.findOneOrFail(id);
     return await this.taskRepository.updateOne(task, updateTaskDto);
+  }
+
+  async deleteTask(id: number) {
+    const task = await this.taskRepository.findOne(id);
+    return await this.taskRepository.deleteOne(task);
   }
 }

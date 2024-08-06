@@ -23,4 +23,8 @@ export class TaskRepository extends EntityRepository<Task> {
     await this.em.persistAndFlush(task);
     return task;
   }
+
+  async deleteOne(task: Task) {
+    await this.em.removeAndFlush(task);
+  }
 }
