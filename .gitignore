@@ -56,7 +56,8 @@ pids
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
 #migration snapshot
-db/migrations/.snapshot-fancy-todo-app.json
+src/db/migrations/.snapshot-todo-app.json
+src/db/migrations/.snapshot-to-do.json
 
 # temp folder 
-/temp
+temp/
