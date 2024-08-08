@@ -199,6 +199,7 @@ export class TaskRepository extends EntityRepository<Task> {
   }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 3e90812 (feat(FTDAS): Add Delete /todos/completed to delete completed tasks)
 =======
 >>>>>>> 1352e66 (feat(FTDAS): Get api for all todos)
@@ -212,4 +213,12 @@ export class TaskRepository extends EntityRepository<Task> {
 >>>>>>> 57d0b96 (feat(FTDAS): Create PUT /todos/:id to update task)
 =======
 >>>>>>> 3e90812 (feat(FTDAS): Add Delete /todos/completed to delete completed tasks)
+=======
+
+  async syncTasks(tasks: Task[]): Promise<void> {
+    await this.nativeDelete({});
+    const taskEntities = tasks.map((taskData) => this.create(taskData));
+    await this.em.persistAndFlush(taskEntities);
+  }
+>>>>>>> c979ab8 (feat(FTDA): Add Put api to replace tasks from database)
 }

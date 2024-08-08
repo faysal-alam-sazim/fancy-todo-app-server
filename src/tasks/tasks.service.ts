@@ -339,4 +339,8 @@ export class TasksService {
     });
     await this.tasksRepository.removeCompleted(completedTasks);
   }
+
+  async syncTasks(tasks: Task[]): Promise<void> {
+    await this.tasksRepository.syncTasks(tasks);
+  }
 }

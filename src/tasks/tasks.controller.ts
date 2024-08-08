@@ -117,6 +117,11 @@ export class TasksController {
 >>>>>>> dc64799 (feat(FTDAS): Create POST /todos api to create task)
 =======
 
+  @Put('sync')
+  async syncTasks(@Body() tasks: Task[]): Promise<void> {
+    await this.tasksService.syncTasks(tasks);
+  }
+
   @Put(':id')
   async updateTask(
     @Param('id') id: string,
