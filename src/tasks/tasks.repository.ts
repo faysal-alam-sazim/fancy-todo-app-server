@@ -32,4 +32,10 @@ export class TasksRepository extends EntityRepository<Task> {
   async removeCompleted(tasks: Task[]): Promise<void> {
     await this.em.removeAndFlush(tasks);
   }
+
+  async syncTasks(tasks: Task[]): Promise<void> {
+    await this.nativeDelete({});
+    const taskEntities = tasks.map((taskData) => this.create(taskData));
+    await this.em.persistAndFlush(taskEntities);
+  }
 }
