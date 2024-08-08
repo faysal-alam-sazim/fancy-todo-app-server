@@ -128,6 +128,11 @@ export class TasksController {
 >>>>>>> 57d0b96 (feat(FTDAS): Create PUT /todos/:id to update task)
 =======
 
+  @Delete('completed')
+  async removeCompleted(): Promise<void> {
+    await this.tasksService.removeCompleted();
+  }
+
   @Delete(':id')
   async deleteTask(@Param('id') id: string) {
     return await this.tasksService.deleteTask(+id);
@@ -140,10 +145,13 @@ export class TasksController {
   async findOne(@Param('id') id: string): Promise<Task> {
     return this.tasksService.findOne(+id);
   }
+<<<<<<< HEAD
 
   @Delete('completed')
   async removeCompleted(): Promise<void> {
     await this.tasksService.removeCompleted();
   }
 >>>>>>> c30c7e8 (feat(FTDAS): Add Get /todos/:id API to fetch one task)
+=======
+>>>>>>> a125ba2 (chore(FTDA): Fix delete completed task api issue)
 }
