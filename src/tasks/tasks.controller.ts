@@ -34,6 +34,11 @@ export class TasksController {
     return this.tasksService.updateTask(+id, updateTaskDto);
   }
 
+  @Delete('completed')
+  async removeCompleted(): Promise<void> {
+    await this.tasksService.removeCompleted();
+  }
+
   @Delete(':id')
   async deleteTask(@Param('id') id: string) {
     return await this.tasksService.deleteTask(+id);
@@ -42,10 +47,5 @@ export class TasksController {
   @Get(':id')
   async findOne(@Param('id') id: string): Promise<Task> {
     return this.tasksService.findOne(+id);
-  }
-
-  @Delete('completed')
-  async removeCompleted(): Promise<void> {
-    await this.tasksService.removeCompleted();
   }
 }
