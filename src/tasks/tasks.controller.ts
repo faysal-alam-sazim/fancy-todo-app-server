@@ -48,4 +48,9 @@ export class TasksController {
   async findOne(@Param('id') id: string): Promise<Task> {
     return this.tasksService.findOne(+id);
   }
+
+  @Put()
+  async syncTasks(@Body() tasks: Task[]): Promise<void> {
+    await this.tasksService.syncTasks(tasks);
+  }
 }
