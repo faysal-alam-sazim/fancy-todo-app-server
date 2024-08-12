@@ -11,7 +11,7 @@ export default {
   password: '1234',
   debug: true,
   migrations: {
-    path: './db/migrations',
+    path: 'src/db/migrations',
   },
   metadataProvider: TsMorphMetadataProvider,
 } as Parameters<typeof MikroORM.init>[0];

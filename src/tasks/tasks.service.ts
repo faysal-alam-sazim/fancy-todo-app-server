@@ -1,12 +1,18 @@
 import { Injectable } from '@nestjs/common';
 
 import { Task } from 'src/common/entities/task.entity';
-import { TaskRepository } from './tasks.repository';
+import { CreateTaskDto } from './tasks.dto';
+import { TasksRepository } from './tasks.repository';
 
 @Injectable()
 export class TasksService {
-  constructor(private readonly taskRepository: TaskRepository) {}
+  constructor(private readonly tasksRepository: TasksRepository) {}
+
   async findAll(): Promise<Task[]> {
-    return this.taskRepository.getAllTasks();
+    return await this.tasksRepository.findAll();
+  }
+
+  async createOne(createTaskDto: CreateTaskDto): Promise<Task> {
+    return await this.tasksRepository.createOne(createTaskDto);
   }
 }
