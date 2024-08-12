@@ -32,10 +32,23 @@ export class TasksController {
     @Body() updateTaskDto: UpdateTaskDto,
   ): Promise<Task> {
     return this.tasksService.updateOne(+id, updateTaskDto);
+<<<<<<< HEAD
   }
 
   @Delete(':id')
   async deleteOne(@Param('id') id: string) {
     return await this.tasksService.deleteOne(+id);
+=======
+>>>>>>> 3c04e04 (feat(FTDAS): Add Get /todos/:id API to fetch one task)
+  }
+
+  @Delete(':id')
+  async deleteOne(@Param('id') id: string) {
+    return await this.tasksService.deleteOne(+id);
+  }
+
+  @Get(':id')
+  async findOne(@Param('id') id: string): Promise<Task> {
+    return this.tasksService.findOne(+id);
   }
 }

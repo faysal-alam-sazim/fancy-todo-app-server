@@ -1,37 +1,35 @@
 import { EntityManager, EntityRepository } from '@mikro-orm/postgresql';
 import { Injectable } from '@nestjs/common';
+<<<<<<< HEAD
+<<<<<<< HEAD
+
 import { Task } from 'src/common/entities/task.entity';
-<<<<<<< HEAD
-<<<<<<< HEAD
 import { CreateTaskDto, UpdateTaskDto } from './tasks.dto';
-=======
-import { CreateTaskDto } from './tasks.dto';
->>>>>>> 4d567fc (feat(FTDAS): Create POST /todos api to create task)
-=======
-import { CreateTaskDto, UpdateTaskDto } from './tasks.dto';
->>>>>>> e018994 (feat(FTDAS): Create PUT /todos/:id to update task)
 
 @Injectable()
 export class TasksRepository extends EntityRepository<Task> {
+=======
+=======
+
+>>>>>>> 3c04e04 (feat(FTDAS): Add Get /todos/:id API to fetch one task)
+import { Task } from 'src/common/entities/task.entity';
+import { CreateTaskDto, UpdateTaskDto } from './tasks.dto';
+
+@Injectable()
+<<<<<<< HEAD
+export class TaskRepository extends EntityRepository<Task> {
+>>>>>>> 57d0b96 (feat(FTDAS): Create PUT /todos/:id to update task)
+=======
+export class TasksRepository extends EntityRepository<Task> {
+>>>>>>> 3c04e04 (feat(FTDAS): Add Get /todos/:id API to fetch one task)
   constructor(em: EntityManager) {
     super(em, Task);
   }
+
 <<<<<<< HEAD
-
-  async createOne(createTaskDto: CreateTaskDto): Promise<Task> {
-    const task = this.create(createTaskDto);
-    await this.em.persistAndFlush(task);
-    return task;
-  }
-
-  async updateOne(task: Task, updateTaskDto: UpdateTaskDto): Promise<Task> {
-    this.assign(task, updateTaskDto);
-    await this.em.persistAndFlush(task);
-    return task;
-  }
+<<<<<<< HEAD
 =======
->>>>>>> e54b1e0 (feat(FTDAS): Add Delete /todos/:id api and delete functionality)
-
+>>>>>>> 3c04e04 (feat(FTDAS): Add Get /todos/:id API to fetch one task)
   async createOne(createTaskDto: CreateTaskDto): Promise<Task> {
     const task = this.create(createTaskDto);
     await this.em.persistAndFlush(task);
@@ -41,10 +39,29 @@ export class TasksRepository extends EntityRepository<Task> {
   async updateOne(task: Task, updateTaskDto: UpdateTaskDto): Promise<Task> {
     this.assign(task, updateTaskDto);
     await this.em.persistAndFlush(task);
+<<<<<<< HEAD
     return task;
   }
 
   async deleteOne(task: Task) {
     await this.em.removeAndFlush(task);
   }
+=======
+  async updateTask(id: number, updateTaskDto: UpdateTaskDto): Promise<Task> {
+    const task = await this.findOne(id);
+    if (task) {
+      this.assign(task, updateTaskDto);
+      await this.em.persistAndFlush(task);
+    }
+    return task;
+  }
+>>>>>>> 57d0b96 (feat(FTDAS): Create PUT /todos/:id to update task)
+=======
+    return task;
+  }
+
+  async deleteOne(task: Task) {
+    await this.em.removeAndFlush(task);
+  }
+>>>>>>> 3c04e04 (feat(FTDAS): Add Get /todos/:id API to fetch one task)
 }
